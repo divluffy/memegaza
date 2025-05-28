@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { Navbar } from "./components/Navbar";
+import { Tabs } from "./components/Tabs";
+import { Dashboard } from "./components/Dashboard";
+import CreateToken from "./components/CreateToken";
+import { MyTokens } from "./components/MyTokens";
+import { Settings } from "./components/Settings";
 
-function App() {
+// Main container below the fixed navbar
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+`;
+
+const App: React.FC = () => {
+  // Define tabs with labels and corresponding components
+  const tabs = [
+    { label: "Dashboard", content: <Dashboard /> },
+    { label: "Create Token", content: <CreateToken /> },
+    { label: "My Tokens", content: <MyTokens /> },
+    { label: "Settings", content: <Settings /> },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Container>
+        <Tabs tabs={tabs} />
+      </Container>
+    </>
   );
-}
+};
 
 export default App;
